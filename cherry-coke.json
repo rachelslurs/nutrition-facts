@@ -1,0 +1,22 @@
+{
+  "item_name": "Cola, Cherry",
+   "brand_name": "Coke",
+   "ingredients": "Carbonated Water, High Fructose Corn Syrup and/or Sucrose, Caramel Color, Phosphoric Acid, Natural Flavors, Caffeine.",
+   "calories": 100,
+   "calories_from_fat": 0,
+   "total_fat": 0,
+   "saturated_fat": null,
+   "cholesterol": null,
+   "sodium": 25,
+   "total_carbohydrate": 28,
+   "dietary_fiber": null,
+   "sugars": 28,
+   "protein": 0,
+   "vitamin_a_dv": 0,
+   "vitamin_c_dv": 0,
+   "calcium_dv": 0,
+   "iron_dv": 0,
+   "servings_per_container": 6,
+   "serving_size_qty": 8,
+   "serving_size_unit": "fl oz"
+}
