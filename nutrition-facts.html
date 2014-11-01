@@ -1,0 +1,140 @@
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
+
+<!--
+Properly formats nutrition facts data into a pretty web component.
+
+##### Example
+
+    <nutrition-facts></nutrition-facts>
+
+@element nutrition-facts
+@blurb Properly formats nutrition facts data into a pretty web component.
+@homepage http://rachelslurs.github.io/nutrition-facts
+-->
+<polymer-element name="nutrition-facts" attributes="foodDataSrc">
+
+  <template>
+    <core-ajax id="foodRequest" auto
+      url="{{foodDataSrc}}"
+      handleAs="json"
+      on-core-response="{{parseResponse}}"
+      response="{{resp}}">
+    </core-ajax>
+
+    <link rel="stylesheet" href="nutrition-facts.css">
+
+
+    <section class="nutritionLabel" style="width: 280px;">
+    	<h1>Nutrition Facts</h1>
+    	<div class="cf">
+    		<div class="rel servingSizeField">
+    	    <div class="serving">
+        		<div class="cf">
+        			<div class="servingSizeText fl">Serving Size</div>
+        			<div class="servingUnitQuantity fl">{{resp.serving_size_qty}} {{resp.serving_size_unit}}</div>
+        			<div class="servingSizeText fl">Servings Per Container</div>
+        			<div class="servingUnitQuantity fl">{{resp.servings_per_container}}</div>
+        		</div><!-- closing class="cf" -->
+        	</div><!-- closing class="serving" -->
+      </div>
+    	<div class="bar1"></div>
+    	<div class="line m"><b>Amount Per Serving</b></div>
+
+    	<div class="bar1"></div>
+    	<div class="line">
+    		<div class="fr">Calories from Fat {{resp.calories_from_fat}}</div>
+    		<div><b>Calories</b> {{resp.calories}}</div>
+    	</div>
+    	<div class="bar2"></div>
+    	<div class="line ar"><b>% Daily Value<sup>*</sup></b></div>
+    	<div class="line">
+    		<div class="dv"><b>0</b>%</div>
+    		<b>Total Fat</b> {{resp.total_fat}}g
+    	</div>
+    	<div class="line indent">
+    		<div class="dv"><b>0</b>%</div>
+    		Saturated Fat {{resp.saturated_fat}}g
+    	</div>
+    	<div class="line indent">
+    		<i>Trans</i> Fat 0g
+    	</div>
+    	<div class="line indent">Polyunsaturated Fat 0g</div>
+    	<div class="line indent">Monounsaturated Fat 0g	</div>
+    	<div class="line">
+    		<div class="dv"><b>0</b>%</div>
+    		<b>Cholesterol</b> {{resp.cholesterol}}mg
+    	</div>
+    	<div class="line">
+    		<div class="dv"><b>0</b>%</div>
+    		<b>Sodium</b> {{resp.sodium}}mg
+    	</div>
+    	<div class="line">
+    		<div class="dv"><b>0</b>%</div>
+    		<b>Total Carbohydrates</b> {{resp.total_carbohydrate}}g
+    	</div>
+    	<div class="line indent">
+    		<div class="dv"><b>0</b>%</div>
+    		Dietary Fiber {{resp.dietary_fiber}}g
+    	</div>
+    	<div class="line indent">Sugars {{resp.sugars}}g</div>
+    	<div class="line"><b>Protein</b> {{resp.protein}}g</div>
+    	<div class="bar1"></div>
+    	<div class="line vitaminA">
+    		<div class="dv">{{resp.vitamin_a_dv}}%</div>
+    		Vitamin A
+    	</div>
+    	<div class="line vitaminC">
+    		<div class="dv">{{resp.vitamin_c_dv}}%</div>
+    		Vitamin C
+    	</div>
+    	<div class="line calcium">
+    		<div class="dv">{{resp.calcium_dv}}%</div>
+    		Calcium
+    	</div>
+    	<div class="line iron">
+    		<div class="dv">{{resp.iron_dv}}%</div>
+    		Iron
+    	</div>
+    	<div class="dvCalorieDiet line">
+    		<div class="calorieNote">
+    			<span class="star">*</span> Percent Daily Values are based on a 2000 calorie diet.
+    			<br>
+    			<div class="ingredientListDiv">
+    				<b class="active" id="ingredientList">INGREDIENTS:</b>
+    				{{resp.ingredients}}
+    			</div><!-- closing class="ingredientListDiv" -->
+    		</div><!-- closing class="calorieNote" -->
+    	</div><!-- closing class="dvCalorieDiet line" -->
+    </section>
+  </template>
+
+  <script>
+
+    Polymer("nutrition-facts", {
+
+      ready: function() {
+        var self = this;
+
+        self.requestUrl = self.foodDataSrc;
+        console.log("Requesting from", self.requestUrl);
+      },
+      parseResponse: function(event, r){
+        response=r.response;
+        console.log('Receiving response',response);
+      }
+
+    });
+
+  </script>
+
+</polymer-element>

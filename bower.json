@@ -1,0 +1,32 @@
+{
+  "name": "nutrition-facts",
+  "private": true,
+  "version": "0.0.1",
+  "authors": [
+    "Rachel Cantor <rachel.cantor@controlgroup.com>"
+  ],
+  "description": "Element providing an easy way to serve up nutrition facts with the appropriate formatting.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "nutrition-facts"
+  ],
+  "main": "nutrition-facts.html",
+  "license": "MIT",
+  "homepage": "http://rachelslurs.github.io/nutrition-facts",
+  "ignore": [
+    "/.*",
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.4.2"
+  },
+  "devDependencies": {
+    "web-component-tester": "Polymer/web-component-tester#^0.7.3",
+    "core-ajax": "Polymer/core-ajax#~0.4.2"
+  }
+}
