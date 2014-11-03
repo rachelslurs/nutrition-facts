@@ -4,7 +4,6 @@ body {
 	font-size: 14px;
 	line-height: 20px;
 	color: #333;
-	background-color: #fff;
 }
 
 .nutritionLabel input.unitQuantityBox.ui-input-text {
@@ -28,7 +27,8 @@ body {
 	font-family: Helvetica, Arial, sans-serif;
 	border: 2px solid #000;
 	line-height: normal;
-  display:inline-block;
+	float:right;
+	background-color: white;
 }
 .nutritionLabel h1 {
 	line-height: .83em;
@@ -216,4 +216,3 @@ body {
 .nutritionLabel .ingredientListDiv {
 	padding-top: 10px;
 }
-
