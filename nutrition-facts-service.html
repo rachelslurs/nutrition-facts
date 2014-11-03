@@ -1,0 +1,67 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-ajax/core-ajax.html">
+<!-- 
+  `<nutrition-facts-service>` provides a way to import food data as JSON.
+
+  Provides a very simple API: `facts` returns the list of nutrition facts.
+  `updateFacts` gives you the ability to retrieve a json file.
+
+  @element nutrition-facts-service
+  @demo 
+  @homepage http://www.polymer-project.org/docs/start/tutorial.html
+-->
+
+<!--
+  An array of fact objects...
+  
+  @attribute facts 
+  @type Array
+  @default []
+-->
+<polymer-element name="nutrition-facts-service" attributes="facts">
+
+  <template>
+    <style>
+      .form {
+        float:left;
+      }
+    </style>
+    <core-ajax id="ajax"
+      url="{{foodDataSrc}}"
+      on-core-response="{{dataLoaded}}"
+      handleAs="json">
+    </core-ajax>
+    <div class="form">
+      <label>Enter a json source: <input value="{{foodDataSrc}}" placeholder="Enter json data source"></label>
+      <button on-click="{{updateFacts}}">Update Facts</button>
+
+      <template if="{{factsJson}}">
+        <div style="max-width:600px;">
+           <p>Json retrieved successfully from <strong>{{foodDataSrc}}</strong>:</p>
+          <code>{{ factsJson }}</code>
+        </div>
+      </template>
+    </div>
+  </template>
+
+  <script>
+  Polymer('nutrition-facts-service', {
+    created: function() {
+      this.facts = [];
+      // set a default
+      this.foodDataSrc="cherry-coke.json";
+    },
+
+    updateFacts: function() {
+      // make ajax request
+      this.$.ajax.go();
+    },
+
+    dataLoaded: function() {
+      this.facts = this.$.ajax.response;
+      this.factsJson = JSON.stringify(this.facts,null,"\t");
+    }
+
+  });
+  </script>
+</polymer-element>
